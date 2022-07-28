@@ -15,6 +15,7 @@ export default function Home() {
   useEffect(() => {
     dispatch(fetchProducts());
   }, []);
+
   const { productsDisplay, setProductsDisplay } = useContext(Context);
 
   const [displayBtn, setDisplayBtn] = useState({

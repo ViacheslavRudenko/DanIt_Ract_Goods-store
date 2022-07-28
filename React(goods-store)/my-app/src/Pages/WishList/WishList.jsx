@@ -22,7 +22,7 @@ export default function WishList() {
     let isInWishList = getProductIncludes(wishList, productInWishList);
 
     return (
-      <li key={productInWishList.Id} className={"wish__item"}>
+      <li key={productInWishList.id} className={"wish__item"}>
         <ProductCard product={productInWishList} isInWishList={isInWishList} />
       </li>
     );

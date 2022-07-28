@@ -9,7 +9,7 @@ import styles from "./ProductList.module.scss";
 import { Context } from "../../App.js";
 
 export const getProductIncludes = (products, product) =>
-  products.some((element) => element.article === product.article);
+  products.some((element) => element.id === product.id);
 
 export default function ProductList() {
   const products = useSelector((store) => store.productsLoad.products);
@@ -32,7 +32,7 @@ export default function ProductList() {
 
   const modalAction = (e) => {
     const productOnClick = products
-      .filter((product) => product.article === e.target.getAttribute("data-id"))
+      .filter((product) => product.id == e.currentTarget.id)
       .shift();
 
     !modal.isOpen &&
@@ -51,14 +51,17 @@ export default function ProductList() {
         btn: [{ id: 1, text: "Add to cart" }],
         content: (
           <div className="main__text goods">
-            <img className="goods__img" src={productOnClick.img} alt="" />
+            <img className="goods__img" src={productOnClick.image} alt="" />
             <div className="goods__info info">
-              <p className="info__title">{productOnClick.Title}</p>
+              <p className="info__title">{productOnClick.title}</p>
 
-              <p className="info__price">
-                <span>Article: {productOnClick.article}</span> Price:{" "}
-                {productOnClick.price}
-              </p>
+              <div className="info__price">
+                <p>Article: {productOnClick.id}</p>
+                <p>
+                  Price:
+                  {productOnClick.price}
+                </p>
+              </div>
             </div>
           </div>
         ),
@@ -71,7 +74,7 @@ export default function ProductList() {
     let isInCartList = getProductIncludes(cartList, product);
 
     return (
-      <li key={product.article} className={styles.cart}>
+      <li key={product.id} className={styles.cart}>
         <ProductCard
           actionOpenModal={modalAction}
           product={product}

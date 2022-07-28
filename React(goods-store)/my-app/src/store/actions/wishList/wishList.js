@@ -2,6 +2,7 @@ import {
   addProductToWishList,
   removeProductFromWishList,
   getWishListFromLocalStorage,
+  getItemWhichLocatedInWishList,
 } from "../../types";
 
 const addProductsToWish = (product) => {
@@ -14,6 +15,7 @@ const removeProductsFromWish = (product) => {
 const setWishListFromLocalStorage = () => {
   return { type: getWishListFromLocalStorage };
 };
+
 export {
   setWishListFromLocalStorage,
   addProductsToWish,

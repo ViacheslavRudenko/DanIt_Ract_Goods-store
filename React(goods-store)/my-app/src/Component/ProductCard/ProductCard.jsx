@@ -8,12 +8,15 @@ import {
   removeProductsFromWish,
 } from "../../store/actions/wishList/wishList";
 import setModal from "../../store/actions/modal/modal";
+import { Rating } from "react-simple-star-rating";
+import { Link } from "react-router-dom";
 
 export default function ProductCard({
   isInWishList,
   isInCartList,
   product,
   actionOpenModal,
+  isItemCard,
 }) {
   const modal = useSelector((store) => store.modal);
   const pageData = useSelector((store) => store.pageData);
@@ -51,31 +54,36 @@ export default function ProductCard({
           closeModal={toggleModal}
         />
       )}
-
-      <div className="card__item">
-        <a className="card__link" href={product.Url}>
-          <img className="card__img" src={product.img} alt={product.Id} />
-        </a>
-      </div>
+      <Link key={product.id} to={`/products/item/${product.id}`}>
+        <div className="card__item">
+          <img className="card__img" src={product.image} alt={product.id} />
+        </div>
+      </Link>
       <div className="card__item">
         <div className="card__title title">
-          <h6 className="title__item">{product.Title}</h6>
-          <a className="title__link" href={product.Url}>
-            <span>{product.Maker}</span>
-          </a>
+          <h6 className="title__item">{product.title}</h6>
         </div>
 
-        <p className="card__descript">{product.Description}</p>
-        <p className="card__color">Color: {product.color}</p>
+        <p className="card__descript">{product.description}</p>
+        <p className="card__color">
+          Rating:{" "}
+          <span>
+            <Rating
+              onClick={() => {}}
+              ratingValue={+product.rating.rate * 20}
+              size={20}
+            />
+          </span>
+        </p>
         <div className="card__info info">
-          <p className="info__acticle">Article: {product.article}</p>
+          <p className="info__acticle">Article: {product.id}</p>
           <p className="info__price">Price: {product.price} UAH</p>
         </div>
-        {pageData.isMainList && (
+        {pageData.isMainList && !isItemCard && (
           <button
             className="card__btn"
             onClick={actionOpenModal}
-            data-id={product.article}
+            id={product.id}
             disabled={isInCartList}
           >
             {!isInCartList ? "Add to cart" : "In Cart!"}
@@ -91,7 +99,7 @@ export default function ProductCard({
           <button
             onClick={actionOpenModal}
             className="card__like"
-            data-id={product.article}
+            id={product.id}
           >
             X
           </button>

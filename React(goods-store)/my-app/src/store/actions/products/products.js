@@ -19,7 +19,6 @@ const fetchProducts = () => {
   return async (dispatch) => {
     await getProducts()
       .then((response) => {
-        console.log(response);
         const isLoaded = response.status === 200;
         isLoaded && dispatch(setReques(true));
         isLoaded && dispatch(setProducts(response.data));

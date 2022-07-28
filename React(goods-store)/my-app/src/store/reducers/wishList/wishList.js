@@ -30,13 +30,11 @@ const reducer = (state = initialState.wishList, action) => {
 
     case removeProductFromWishList: {
       const index = wishList.findIndex(
-        (product) => product.article === action.payload.article
+        (product) => product.id === action.payload.id
       );
-      wishList.splice(wishList.indexOf(action.payload.article), 1);
+      wishList.splice(wishList.indexOf(action.payload.id), 1);
       localStorage.setItem("wishList", JSON.stringify(wishList));
-      return state.filter(
-        (product) => product.article !== action.payload.article
-      );
+      return state.filter((product) => product.id !== action.payload.id);
     }
 
     default:

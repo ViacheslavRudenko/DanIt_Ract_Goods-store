@@ -1,4 +1,10 @@
 import axios from "axios";
+const url = "https://fakestoreapi.com/products/";
+async function getProducts() {
+  return await axios(url);
+}
+async function getProductItem(id) {
+  return await axios(url + id);
+}
 
-const getProducts = () => axios("http://localhost:3000/goods.json");
-export { getProducts };
+export { getProducts, getProductItem };

@@ -1,9 +1,13 @@
 .card {
+  &__item {
+    padding-bottom: 40px;
+  }
   &__title {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     padding: 20px 0;
+    font-weight: bold;
   }
   &__info {
     display: flex;
@@ -11,6 +15,7 @@
     padding: 20px 0;
   }
   &__descript {
+    text-decoration: none;
     &::first-letter {
       padding-left: 10px;
     }
@@ -19,17 +24,22 @@
     padding: 10px;
   }
   &__btn {
-    width: 100%;
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    width: calc(100% - 40px);
     border: none;
     padding: 10px;
     background-color: grey;
     color: white;
+    max-width: 700px;
   }
   .title {
     &__item {
       padding-right: 10px;
       font-weight: bold;
       font-size: 14px;
+      text-decoration: none;
     }
     &__link {
       text-decoration: none;

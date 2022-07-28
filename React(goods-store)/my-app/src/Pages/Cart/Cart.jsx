@@ -37,9 +37,7 @@ export default function Cart() {
         setPageData({
           ...pageData,
           productOnClick: cartList
-            .filter(
-              (product) => product.article === e.target.getAttribute("data-id")
-            )
+            .filter((product) => product.id == e.currentTarget.id)
             .shift(),
         })
       );
@@ -47,7 +45,7 @@ export default function Cart() {
 
   const cartListRender = cartList.map((productInCart) => {
     return (
-      <li key={productInCart.Id} className={"cart__item"}>
+      <li key={productInCart.id} className={"cart__item"}>
         <ProductCard actionOpenModal={modalAction} product={productInCart} />
       </li>
     );

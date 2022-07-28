@@ -26,13 +26,11 @@ const reducer = (state = initialState.cartList, action) => {
     }
     case removeProductFromCartList: {
       const index = cartList.findIndex(
-        (product) => product.article === action.payload.article
+        (product) => product.id == action.payload.id
       );
       cartList.splice(index, 1);
       localStorage.setItem("shopingList", JSON.stringify(cartList));
-      return state.filter(
-        (product) => product.article !== action.payload.article
-      );
+      return state.filter((product) => product.id !== action.payload.id);
     }
     case getCartListFromLocalStorage: {
       return cartList;

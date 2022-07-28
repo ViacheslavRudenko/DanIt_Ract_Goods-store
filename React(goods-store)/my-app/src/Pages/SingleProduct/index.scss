@@ -1,0 +1,26 @@
+.single-box {
+  width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 20px;
+  &__item {
+    width: 320px;
+    margin: 0 auto;
+    position: relative;
+    padding: 30px;
+  }
+  .reviews {
+    padding: 30px;
+    &__title {
+      text-transform: uppercase;
+      font-weight: bold;
+      text-align: center;
+    }
+    &__error {
+      color: red;
+      padding: 20px;
+      text-align: center;
+    }
+  }
+}

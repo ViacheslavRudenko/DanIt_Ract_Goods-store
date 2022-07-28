@@ -6,7 +6,7 @@ import { useSelector } from "react-redux";
 
 export default function Modal({ closeModal, actionWithModal, product }) {
   const modal = useSelector((store) => store.modal);
-  const { title, btn, isBtnClose } = modal;
+  const { title, btn, isBtnClose, content } = modal;
 
   return (
     <div className="modal">
@@ -23,19 +23,7 @@ export default function Modal({ closeModal, actionWithModal, product }) {
             )}
           </div>
           <div className="modal__main main">
-            {
-              <div className="main__text goods">
-                <img className="goods__img" src={product.img} alt="" />
-                <div className="goods__info info">
-                  <p className="info__title">{product.Title}</p>
-
-                  <p className="info__price">
-                    <span>Article: {product.article}</span> Price:{" "}
-                    {product.price}
-                  </p>
-                </div>
-              </div>
-            }
+            {content}
             <div className="main__btn btn">
               <Button btn={btn} actionWithModal={actionWithModal} />
             </div>

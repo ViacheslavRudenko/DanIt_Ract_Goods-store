@@ -7,7 +7,7 @@ const initialState = {
 const reducer = (state = initialState.modal, action) => {
   switch (action.type) {
     case setModalType: {
-      return action.payload;
+      return { ...state, ...action.payload };
     }
     default:
       return state;

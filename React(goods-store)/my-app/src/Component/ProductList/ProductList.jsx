@@ -10,13 +10,6 @@ import { Context } from "../../App.js";
 
 export const getProductIncludes = (products, product) =>
   products.some((element) => element.article === product.article);
-export const toggleModal = (dispatch, modal) =>
-  dispatch(
-    setModal({
-      ...modal,
-      isOpen: !modal.isOpen,
-    })
-  );
 
 export default function ProductList() {
   const products = useSelector((store) => store.productsLoad.products);
@@ -29,14 +22,6 @@ export default function ProductList() {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(
-      setModal({
-        isOpen: false,
-        title: "Confirm the order",
-        isBtnClose: true,
-        btn: [{ id: 1, text: "Add to cart" }],
-      })
-    );
-    dispatch(
       setPageData({
         isMainList: true,
         productOnClick: {},
@@ -45,23 +30,40 @@ export default function ProductList() {
     );
   }, []);
 
-  const getProductOnClick = (e) => {
+  const modalAction = (e) => {
+    const productOnClick = products
+      .filter((product) => product.article === e.target.getAttribute("data-id"))
+      .shift();
+
     !modal.isOpen &&
       dispatch(
         setPageData({
           ...pageData,
-          productOnClick: products
-            .filter(
-              (product) => product.article === e.target.getAttribute("data-id")
-            )
-            .shift(),
+          productOnClick: productOnClick,
         })
       );
-  };
 
-  const modalAction = (e) => {
-    getProductOnClick(e);
-    toggleModal(dispatch, modal);
+    dispatch(
+      setModal({
+        isOpen: true,
+        title: "Confirm the order",
+        isBtnClose: true,
+        btn: [{ id: 1, text: "Add to cart" }],
+        content: (
+          <div className="main__text goods">
+            <img className="goods__img" src={productOnClick.img} alt="" />
+            <div className="goods__info info">
+              <p className="info__title">{productOnClick.Title}</p>
+
+              <p className="info__price">
+                <span>Article: {productOnClick.article}</span> Price:{" "}
+                {productOnClick.price}
+              </p>
+            </div>
+          </div>
+        ),
+      })
+    );
   };
 
   const productCard = products.map((product) => {
@@ -71,7 +73,7 @@ export default function ProductList() {
     return (
       <li key={product.article} className={styles.cart}>
         <ProductCard
-          toggleModal={modalAction}
+          actionOpenModal={modalAction}
           product={product}
           isInWishList={isInWishList}
           isInCartList={isInCartList}

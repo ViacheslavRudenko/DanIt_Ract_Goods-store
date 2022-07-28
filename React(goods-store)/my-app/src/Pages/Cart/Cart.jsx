@@ -4,21 +4,12 @@ import "./cart.scss";
 import { useDispatch, useSelector } from "react-redux";
 import setModal from "../../store/actions/modal/modal";
 import setPageData from "../../store/actions/pageData/pageData";
-import { toggleModal } from "../../Component/ProductList/ProductList";
 import Form from "../../Component/Form/Form";
 
 export default function Cart() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(
-      setModal({
-        isOpen: false,
-        title: "Are you sure you want to delete this product from the cart?",
-        isBtnClose: true,
-        btn: [{ id: 1, text: "Yes" }],
-      })
-    );
     dispatch(
       setPageData({
         isInCartPage: true,
@@ -32,6 +23,15 @@ export default function Cart() {
   const pageData = useSelector((store) => store.pageData);
 
   const modalAction = (e) => {
+    dispatch(
+      setModal({
+        isOpen: true,
+        title: "Are you sure you want to delete this product from the cart?",
+        isBtnClose: true,
+        btn: [{ id: 1, text: "Yes" }],
+      })
+    );
+
     !modal.isOpen &&
       dispatch(
         setPageData({
@@ -43,13 +43,12 @@ export default function Cart() {
             .shift(),
         })
       );
-    toggleModal(dispatch, modal);
   };
 
   const cartListRender = cartList.map((productInCart) => {
     return (
       <li key={productInCart.Id} className={"cart__item"}>
-        <ProductCard toggleModal={modalAction} product={productInCart} />
+        <ProductCard actionOpenModal={modalAction} product={productInCart} />
       </li>
     );
   });

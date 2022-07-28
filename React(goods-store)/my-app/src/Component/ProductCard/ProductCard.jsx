@@ -7,17 +7,26 @@ import {
   addProductsToWish,
   removeProductsFromWish,
 } from "../../store/actions/wishList/wishList";
+import setModal from "../../store/actions/modal/modal";
 
 export default function ProductCard({
-  toggleModal,
   isInWishList,
   isInCartList,
   product,
+  actionOpenModal,
 }) {
   const modal = useSelector((store) => store.modal);
   const pageData = useSelector((store) => store.pageData);
 
   const dispatch = useDispatch();
+
+  const toggleModal = () =>
+    dispatch(
+      setModal({
+        ...modal,
+        isOpen: !modal.isOpen,
+      })
+    );
 
   const setWishList = () => {
     !isInWishList
@@ -31,7 +40,7 @@ export default function ProductCard({
       : dispatch(removeProducts(pageData.productOnClick));
     toggleModal();
   };
-  console.log(pageData);
+
   return (
     <>
       {modal.isOpen && (
@@ -65,7 +74,7 @@ export default function ProductCard({
         {pageData.isMainList && (
           <button
             className="card__btn"
-            onClick={toggleModal}
+            onClick={actionOpenModal}
             data-id={product.article}
             disabled={isInCartList}
           >
@@ -80,7 +89,7 @@ export default function ProductCard({
 
         {pageData.isInCartPage && (
           <button
-            onClick={toggleModal}
+            onClick={actionOpenModal}
             className="card__like"
             data-id={product.article}
           >

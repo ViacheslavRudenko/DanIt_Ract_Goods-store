@@ -1,6 +1,6 @@
 .form {
-  padding: 20px 400px;
   &__item {
+    margin: 0 auto;
     width: 200px;
     padding: 5px 0;
 
@@ -15,11 +15,16 @@
     }
   }
   &__btn {
+    display: flex;
+    justify-content: center;
+    margin: 0 auto;
+    max-width: 320px;
     width: 100%;
     padding: 10px;
   }
   &__input {
     padding: 8px 0;
-    width: 396px;
+    width: 100%;
+    max-width: 320px;
   }
 }

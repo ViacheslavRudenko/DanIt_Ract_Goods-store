@@ -1,8 +1,12 @@
 import NumberFormat from "react-number-format";
 import { Field } from "formik";
 import CustomErrorMessage from "./CustomErrorMessage";
+import PropTypes from "prop-types";
 
-export default function CustomForm({ formName, text, updateData }) {
+export default function CustomForm({
+  form: { text, formName, formType },
+  updateData,
+}) {
   const renderSwitch = () => {
     switch (formName) {
       case "phoneNumber":
@@ -21,7 +25,13 @@ export default function CustomForm({ formName, text, updateData }) {
         );
       default:
         return (
-          <Field name={formName} id={formName} className={"form__input"} />
+          <Field
+            name={formName}
+            id={formName}
+            type={formType ? formType : "input"}
+            as={formType === "textarea" ? formType : "input"}
+            className={"form__input"}
+          />
         );
     }
   };
@@ -34,3 +44,10 @@ export default function CustomForm({ formName, text, updateData }) {
     </>
   );
 }
+
+CustomForm.propTypes = {
+  text: PropTypes.string,
+  formName: PropTypes.string,
+  formType: PropTypes.string,
+  updateData: PropTypes.func,
+};

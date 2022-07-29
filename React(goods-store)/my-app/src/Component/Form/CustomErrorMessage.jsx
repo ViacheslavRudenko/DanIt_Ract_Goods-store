@@ -1,4 +1,5 @@
 import { ErrorMessage } from "formik";
+import PropTypes from "prop-types";
 
 export default function CustomErrorMessage({ name }) {
   return (
@@ -11,3 +12,7 @@ export default function CustomErrorMessage({ name }) {
     </ErrorMessage>
   );
 }
+
+CustomErrorMessage.propTypes = {
+  btnamen: PropTypes.string,
+};

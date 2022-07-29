@@ -98,5 +98,6 @@ export default function ProductList() {
 }
 
 ProductList.propTypes = {
-  objItems: PropTypes.array,
+  products: PropTypes.array,
+  product: PropTypes.object,
 };

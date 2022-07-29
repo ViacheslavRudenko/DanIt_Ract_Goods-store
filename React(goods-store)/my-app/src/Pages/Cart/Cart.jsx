@@ -4,7 +4,7 @@ import "./cart.scss";
 import { useDispatch, useSelector } from "react-redux";
 import setModal from "../../store/actions/modal/modal";
 import setPageData from "../../store/actions/pageData/pageData";
-import Form from "../../Component/Form/Form";
+import FormsOrder from "../../Component/Form/FormOrder";
 
 export default function Cart() {
   const dispatch = useDispatch();
@@ -65,7 +65,7 @@ export default function Cart() {
 
         {cartList.length && (
           <div>
-            <Form cartList={cartList} />
+            <FormsOrder cartList={cartList} />
           </div>
         )}
       </div>

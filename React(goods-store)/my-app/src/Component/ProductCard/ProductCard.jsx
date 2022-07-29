@@ -110,7 +110,9 @@ export default function ProductCard({
 }
 
 ProductCard.propTypes = {
-  objItems: PropTypes.object,
-  dataId: PropTypes.string,
-  getLengthFromLocalStorage: PropTypes.func,
+  isInWishList: PropTypes.bool,
+  isInCartList: PropTypes.bool,
+  product: PropTypes.object,
+  actionOpenModal: PropTypes.func,
+  isItemCard: PropTypes.bool,
 };

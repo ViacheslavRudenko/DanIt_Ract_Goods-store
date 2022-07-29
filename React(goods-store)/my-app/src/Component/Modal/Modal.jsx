@@ -4,7 +4,7 @@ import Button from "../Button/Button";
 import PropTypes from "prop-types";
 import { useSelector } from "react-redux";
 
-export default function Modal({ closeModal, actionWithModal, product }) {
+export default function Modal({ closeModal, actionWithModal }) {
   const modal = useSelector((store) => store.modal);
   const { title, btn, isBtnClose, content } = modal;
 
@@ -35,8 +35,6 @@ export default function Modal({ closeModal, actionWithModal, product }) {
 }
 
 Modal.propTypes = {
-  modal: PropTypes.object,
-  product: PropTypes.object,
   closeModal: PropTypes.func,
-  setShopingList: PropTypes.func,
+  actionWithModal: PropTypes.func,
 };

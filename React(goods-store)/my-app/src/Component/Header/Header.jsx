@@ -1,5 +1,4 @@
 import "./header.scss";
-import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 
@@ -30,8 +29,3 @@ export default function Header() {
     </div>
   );
 }
-
-Header.propTypes = {
-  basket: PropTypes.number,
-  selected: PropTypes.number,
-};
